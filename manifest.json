@@ -1,0 +1,27 @@
+{
+  "id": "/?source=tatinha",
+  "name": "Tatinha Nails",
+  "short_name": "Tatinha Nails",
+  "description": "Agende seu horário na Tatinha Nails",
+  "start_url": "./index.html?install=pwa",
+  "display": "standalone",
+  "background_color": "#DAEBE3",
+  "theme_color": "#99CDD8",
+  "orientation": "portrait",
+  "categories": ["lifestyle", "business"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

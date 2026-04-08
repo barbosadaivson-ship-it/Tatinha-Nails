@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tatinha Nails - Agendamento</title>
+    <meta name="description" content="Agende seu horário na Tatinha Nails. Manicure e Pedicure com carinho.">
+    <meta name="theme-color" content="#99CDD8">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Tatinha Nails">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <!-- /PWA -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div id="app">
+        <header class="main-header" id="main-header">
+            <div class="logo-container">
+                <i data-lucide="sparkles" class="logo-icon"></i>
+                <h1 id="shop-name">Tatinha Nails</h1>
+            </div>
+            <!-- Admin button & Install button -->
+            <div id="header-right">
+                <div id="dynamic-admin-btn"></div>
+                <button id="pwa-install-btn" class="pwa-btn" style="display:none;">
+                    <i data-lucide="download"></i> <span>App</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- PWA iOS Guide Modal -->
+        <div id="ios-guide-modal" class="pwa-modal">
+            <div class="pwa-modal-content">
+                <button class="pwa-modal-close" onclick="closeIosModal()">&times;</button>
+                <h3>Instalar no iPhone</h3>
+                <p>Para ter o app na sua tela de início:</p>
+                <ol style="margin-top: 15px; margin-bottom: 25px;">
+                    <li>Clique nos <strong>três pontinhos</strong> <i data-lucide="more-horizontal"></i> (ou Compartilhar <i data-lucide="share"></i>).</li>
+                    <li>Clique em <strong>Compartilhar</strong>.</li>
+                    <li>Procure a opção <strong>"Adicionar à Tela de Início"</strong> <i data-lucide="plus-square"></i>.</li>
+                </ol>
+                <div class="ios-guide-arrow">↓</div>
+            </div>
+        </div>
+
+        <!-- PWA Android Protect Guide Modal -->
+        <div id="android-guide-modal" class="pwa-modal">
+            <div class="pwa-modal-content" style="text-align: center;">
+                <button class="pwa-modal-close" onclick="closeAndroidModal()">&times;</button>
+                <h3>Instalação Segura</h3>
+                <p>O Google Play Protect pode exibir um alerta de segurança padrão para novos aplicativos.</p>
+                <p>Se isso acontecer, siga os passos abaixo para autorizar:</p>
+                <ol style="margin-top: 15px; margin-bottom: 25px;">
+                    <li>Toque em <strong>"Mais Detalhes"</strong>.</li>
+                    <li>Toque em <strong>"Instalar assim mesmo"</strong>.</li>
+                </ol>
+                <button class="btn-primary" onclick="proceedAndroidInstall()">
+                    <i data-lucide="download"></i>
+                    Continuar Instalação
+                </button>
+            </div>
+        </div>
+
+        <main id="view-container">
+            <div class="loading-screen">
+                <div class="spinner"></div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="nav-item active" data-view="home">
+                <i data-lucide="home"></i>
+                <span>Início</span>
+            </button>
+            <button class="nav-item" data-view="myBookings">
+                <i data-lucide="calendar-check"></i>
+                <span>Agendamentos</span>
+            </button>
+            <button class="nav-item" data-view="login">
+                <i data-lucide="lock"></i>
+                <span>Admin</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script src="brand.js"></script>
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW reg error:', err));
+            });
+        }
+    </script>
+</body>
+</html>
